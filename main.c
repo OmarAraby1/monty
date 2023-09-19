@@ -28,7 +28,6 @@ int main(int argc, char **argv)
 	int val;
 	stack_t *head;
 
-	fprintf(stdout, "initiating variables\n");
 	stack_init(&head);
 	if (argc != 2)
 	{
@@ -37,13 +36,11 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		fprintf(stdout, "argc = 2\n");
 		if (!argv[1])
 		{
 			fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 			exit(EXIT_FAILURE);
 		}
-		fprintf(stdout, "openning file\n");
 		fi = fopen(argv[1], "r");
 		if (fi == NULL)
 		{
@@ -51,10 +48,8 @@ int main(int argc, char **argv)
 			fclose(fi);
 			exit(EXIT_FAILURE);
 		}
-		fprintf(stdout, "Succeed opening file\n");
 		while ((read = getline(&line, &size, fi)) != -1)
 		{
-			fprintf(stdout, "reading lines\n");
 			op = strtok(line, DELIMS);
 			line_num++;
 			if (op)
@@ -62,10 +57,8 @@ int main(int argc, char **argv)
 				i = 0;
 				while (insts[i].opcode != NULL)
 				{
-					fprintf(stdout, "entering opcode structure\n");
 					if (strcmp(op, insts[i].opcode) == 0)
 					{
-						fprintf(stdout, "checking if opcode exist\n");
 						sval = strtok(NULL, DELIMS);
 						if (strcmp(op, "push") == 0)
 						{
