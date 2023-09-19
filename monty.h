@@ -1,5 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -40,11 +41,11 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*f)(stack_t **stack, int val);
 } instruction_t;
 
 int main(int argc, char **argv);
-void _push(stack_t **head, unsigned int line_number);
-void _pall(stack_t **head, unsigned int line_number);
+void _push(stack_t **head, int val);
+void _pall(stack_t **head, int val);
 
 #endif
