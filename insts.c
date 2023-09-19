@@ -45,3 +45,20 @@ void _pall(stack_t **head, int val)
 		temp = temp->next;
 	}
 }
+/**
+ * _pint - prints the value at the top
+ * @head: head of the stack
+ * @cline: number of lines
+ * Return: nothing
+ */
+
+void _pint(stack_t **head, unsigned int cline)
+{
+	if (*head == NULL)
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", cline);
+		exit(EXIT_FAILURE);
+	}
+
+	printf("%d\n", (*head)->n);
+}
