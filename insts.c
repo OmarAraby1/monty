@@ -2,13 +2,12 @@
 /**
  * _push - pushes an element to the stack
  * @head: pointer to pointer to stack_t
- * @line_num: line number of the file
- * Return: void
+ * @val: value to push
+ * Return: nothing
  */
-void _push(stack_t **head, unsigned int line_num)
+void _push(stack_t **head, int val)
 {
 	stack_t *new_node;
-	char *tok;
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
@@ -16,13 +15,7 @@ void _push(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	tok = strtok(NULL, DELIMS);
-	if (tok == NULL || new_node == NULL)
-	{
-		fprintf(stderr, "Line %d: usage: push integer\n", line_num);
-		exit(EXIT_FAILURE);
-	}
-	new_node->n = atoi(tok);
+	new_node->n = val;
 	new_node->prev = NULL;
 	new_node->next = *head;
 	if (*head != NULL)
@@ -34,17 +27,21 @@ void _push(stack_t **head, unsigned int line_num)
 /**
  * _pall - prints all the elements of the stack
  * @head: pointer to pointer to stack_t
- * @line_num: line number of the file
+ * @val: unused here
  * Return: nothing
  */
-void _pall(stack_t **head, unsigned int line_num)
+void _pall(stack_t **head, int val)
 {
 	stack_t *temp = *head;
-	(void)line_num;
+	(void)val;
 
+	if (head == NULL)
+	{
+		return;
+	}
 	while (temp != NULL)
 	{
-		printf("%d\n", temp->n);
+		fprintf(stdout, "%d\n", temp->n);
 		temp = temp->next;
 	}
 }
