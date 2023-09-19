@@ -48,17 +48,38 @@ void _pall(stack_t **head, int val)
 /**
  * _pint - prints the value at the top
  * @head: head of the stack
- * @cline: number of lines
+ * @val: number of lines
  * Return: nothing
  */
 
-void _pint(stack_t **head, unsigned int cline)
+void _pint(stack_t **head, unsigned int val)
 {
 	if (*head == NULL)
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty\n", cline);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", val);
 		exit(EXIT_FAILURE);
 	}
 
 	printf("%d\n", (*head)->n);
+}
+/**
+ * _pop - removes the top element of the stack
+ * @head: head of the stack
+ * @val: number of lines
+ * Return: nothing
+ */
+
+void _pop(stack_t **head, unsigned int val)
+{
+	stack_t *other;
+
+	if (*head == NULL || head == NULL)
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", val);
+		exit(EXIT_FAILURE);
+	}
+
+	other = *head;
+	*head = other->next;
+	free(other);
 }
