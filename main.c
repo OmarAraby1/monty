@@ -1,5 +1,14 @@
 #include "monty.h"
 /**
+*stack_init - initialize stack
+*@head: pointer to pointer to stack_t
+*Return: void
+*/
+void stack_init(stack_t **head)
+{
+	*head = NULL;
+}
+/**
  * main - entry point
  * @argc: argument count
  * @argv: array of arguments
@@ -7,50 +16,84 @@
  */
 int main(int argc, char **argv)
 {
-	stack_t *head = NULL;
 	instruction_t insts[] = {
 		{"push", _push},
 		{"pall", _pall},
 		{NULL, NULL}};
-	FILE *fi;
-	int len = 0;
-	char *stk, *tok, *line = NULL;
+	ssize_t read;
+	size_t size = 0;
+	FILE *fi = NULL;
+	char *op = NULL, *sval = NULL, *line = NULL;
 	unsigned int i = 0, line_num = 0;
+	int val;
+	stack_t *head;
 
+	fprintf(stdout, "initiating variables\n");
+	stack_init(&head);
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fi = fopen(argv[1], "r");
-	if (fi == NULL)
+	else
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[i]);
-		exit(EXIT_FAILURE);
-	}
-	while (fgets(line, len, fi) != NULL)
-	{
-		stk = strtok(line, DELIMS);
-		line_num++;
-		if (stk)
+		fprintf(stdout, "argc = 2\n");
+		if (!argv[1])
 		{
-			tok = strtok(line, " \n");
-			while (insts[i].opcode != NULL)
+			fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+			exit(EXIT_FAILURE);
+		}
+		fprintf(stdout, "openning file\n");
+		fi = fopen(argv[1], "r");
+		if (fi == NULL)
+		{
+			fprintf(stderr, "Error: Can't open file %s\n", argv[i]);
+			fclose(fi);
+			exit(EXIT_FAILURE);
+		}
+		fprintf(stdout, "Succeed opening file\n");
+		while ((read = getline(&line, &size, fi)) != -1)
+		{
+			fprintf(stdout, "reading lines\n");
+			op = strtok(line, DELIMS);
+			line_num++;
+			if (op)
 			{
-				if (strcmp(tok, insts[i].opcode) == 0)
+				i = 0;
+				while (insts[i].opcode != NULL)
 				{
-					insts[i].f(&head, line_num);
-					break;
+					fprintf(stdout, "entering opcode structure\n");
+					if (strcmp(op, insts[i].opcode) == 0)
+					{
+						fprintf(stdout, "checking if opcode exist\n");
+						sval = strtok(NULL, DELIMS);
+						if (strcmp(op, "push") == 0)
+						{
+							if (sval == NULL)
+							{
+								fclose(fi);
+								fprintf(stderr, "Line %d: usage: push integer\n", line_num);
+								exit(EXIT_FAILURE);
+							}
+							else
+							{
+								val = atoi(sval);
+							}
+						}
+						insts[i].f(&head, val);
+						break;
+					}
+					i++;
 				}
-				i++;
-			}
-			if (insts[i].opcode == NULL)
-			{
-				fprintf(stderr, "L%d: unknown instruction %s\n", line_num, tok);
+				if (insts[i].opcode == NULL)
+				{
+					fclose(fi);
+					fprintf(stderr, "L%d: unknown instruction %s\n", line_num, op);
+					exit(EXIT_FAILURE);
+				}
 			}
 		}
+		fclose(fi);
+		exit(EXIT_SUCCESS);
 	}
-	free(line);
-	fclose(fi);
-	exit(EXIT_SUCCESS);
 }
