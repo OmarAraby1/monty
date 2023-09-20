@@ -52,14 +52,15 @@ void _pall(stack_t **head, int val)
  * Return: nothing
  */
 
-void _pint(stack_t **head, unsigned int val)
+void _pint(stack_t **head, int val)
 {
+	(void)val;
+
 	if (*head == NULL)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", val);
 		exit(EXIT_FAILURE);
 	}
-
 	printf("%d\n", (*head)->n);
 }
 /**
@@ -69,16 +70,16 @@ void _pint(stack_t **head, unsigned int val)
  * Return: nothing
  */
 
-void _pop(stack_t **head, unsigned int val)
+void _pop(stack_t **head, int val)
 {
 	stack_t *other;
+	(void)val;
 
 	if (*head == NULL || head == NULL)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", val);
 		exit(EXIT_FAILURE);
 	}
-
 	other = *head;
 	*head = other->next;
 	free(other);
