@@ -47,6 +47,6 @@ typedef struct instruction_s
 int main(int argc, char **argv);
 void _push(stack_t **head, int val);
 void _pall(stack_t **head, int val);
-void _pint(stack_t **head, unsigned int val);
-void _pop(stack_t **head, unsigned int val);
+void _pint(stack_t **head, int val);
+void _pop(stack_t **head, int val);
 #endif
