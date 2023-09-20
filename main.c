@@ -19,6 +19,8 @@ int main(int argc, char **argv)
 	instruction_t insts[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
+		{"pop", _pop},
 		{NULL, NULL}};
 	ssize_t read;
 	size_t size = 0;
