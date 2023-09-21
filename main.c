@@ -20,7 +20,8 @@ int main(int argc, char **argv)
 		{"pint", _pint}, {"pop", _pop}, {"swap", _swap},
 		{"add", _add}, {"nop", _nop}, {"sub", _sub}, {"div", _div},
 		{"mul", _mul}, {"mod", _mod}, {"pchar", _pchar},
-		{"rotl", _rotl}, {"rotr", _rotr}, {NULL, NULL}};
+		{"rotl", _rotl}, {"rotr", _rotr}, {"pstr", _pstr},
+		{NULL, NULL}};
 	ssize_t read;
 	size_t size = 0;
 	FILE *fi = NULL;
