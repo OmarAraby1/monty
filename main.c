@@ -16,12 +16,11 @@ void stack_init(stack_t **head)
  */
 int main(int argc, char **argv)
 {
-	instruction_t insts[] = {
-		{"push", _push},
-		{"pall", _pall},
-		{"pint", _pint},
-		{"pop", _pop},
-		{NULL, NULL}};
+	instruction_t insts[] = {{"push", _push}, {"pall", _pall},
+		{"pint", _pint}, {"pop", _pop}, {"swap", _swap},
+		{"add", _add}, {"nop", _nop}, {"sub", _sub}, {"div", _div},
+		{"mul", _mul}, {"mod", _mod}, {"pchar", _pchar},
+		{"rotl", _rotl}, {"rotr", _rotr}, {NULL, NULL}};
 	ssize_t read;
 	size_t size = 0;
 	FILE *fi = NULL;
@@ -53,6 +52,10 @@ int main(int argc, char **argv)
 		while ((read = getline(&line, &size, fi)) != -1)
 		{
 			op = strtok(line, DELIMS);
+			if (op[0] == '#')
+			{
+				continue;
+			}
 			line_num++;
 			if (op)
 			{
@@ -75,7 +78,7 @@ int main(int argc, char **argv)
 								val = atoi(sval);
 							}
 						}
-						insts[i].f(&head, val);
+						insts[i].f(&head, val, line_num);
 						break;
 					}
 					i++;
