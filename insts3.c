@@ -59,6 +59,31 @@ void _pchar(stack_t **head, int val, unsigned int line_num)
 	printf("%c\n", h->n);
 }
 /**
+ * _pstr - prints the string starting at the top of the stack
+ * @head: stack head
+ * @val: unused
+ * @line_num: unused
+ * Return: nothing
+*/
+void _pstr(stack_t **head, int val, unsigned int line_num)
+{
+	stack_t *h;
+	(void)val;
+	(void)line_num;
+
+	h = *head;
+	while (h)
+	{
+		if (h->n > 127 || h->n <= 0)
+		{
+			break;
+		}
+		printf("%c", h->n);
+		h = h->next;
+	}
+	printf("\n");
+}
+/**
  * _rotl - rotates the stack to the top
  * @head: stack head
  * @val: unused
