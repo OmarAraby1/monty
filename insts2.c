@@ -2,15 +2,13 @@
 /**
  * _swap - adds the top two elements of the stack.
  * @head: stack head
- * @val: unused
  * @line_num: number of line
  * Return: no return
 */
-void _swap(stack_t **head, int val, unsigned int line_num)
+void _swap(stack_t **head, unsigned int line_num)
 {
 	stack_t *h;
 	int len = 0, aux;
-	(void)val;
 
 	h = *head;
 	while (h)
@@ -21,6 +19,9 @@ void _swap(stack_t **head, int val, unsigned int line_num)
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
@@ -31,15 +32,13 @@ void _swap(stack_t **head, int val, unsigned int line_num)
 /**
  * _add - adds the top two elements of the stack.
  * @head: stack head
- * @val: unused
  * @line_num: number of line
  * Return: no return
 */
-void _add(stack_t **head, int val, unsigned int line_num)
+void _add(stack_t **head, unsigned int line_num)
 {
 	stack_t *h;
 	int len = 0, aux;
-	(void)val;
 
 	h = *head;
 	while (h)
@@ -50,6 +49,9 @@ void _add(stack_t **head, int val, unsigned int line_num)
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
@@ -60,15 +62,13 @@ void _add(stack_t **head, int val, unsigned int line_num)
 /**
  * _sub - sustract top two numbers of the stack
  * @head: stack head
- * @val: unused
  * @line_num: number of line
  * Return: no return
  */
-void _sub(stack_t **head, int val, unsigned int line_num)
+void _sub(stack_t **head, unsigned int line_num)
 {
 	stack_t *h;
 	int len = 0, aux;
-	(void)val;
 
 	h = *head;
 	while (h)
@@ -79,6 +79,9 @@ void _sub(stack_t **head, int val, unsigned int line_num)
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
@@ -89,15 +92,13 @@ void _sub(stack_t **head, int val, unsigned int line_num)
 /**
  * _div - divides top two numbers of the stack
  * @head: stack head
- * @val: unused
  * @line_num: number of line
  * Return: nothing
  */
-void _div(stack_t **head, int val, unsigned int line_num)
+void _div(stack_t **head, unsigned int line_num)
 {
 	stack_t *h;
 	int len = 0, aux;
-	(void)val;
 
 	h = *head;
 	while (h)
@@ -108,12 +109,18 @@ void _div(stack_t **head, int val, unsigned int line_num)
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
 	if (h->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -126,15 +133,13 @@ void _div(stack_t **head, int val, unsigned int line_num)
 /**
  * _mul - multiplies the top two elements of the stack
  * @head: stack head
- * @val: unused
  * @line_num: number of line
  * Return: nothing
 */
-void _mul(stack_t **head, int val, unsigned int line_num)
+void _mul(stack_t **head, unsigned int line_num)
 {
 	stack_t *h;
 	int len = 0, aux;
-	(void)val;
 
 	h = *head;
 	while (h)
@@ -145,6 +150,9 @@ void _mul(stack_t **head, int val, unsigned int line_num)
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;

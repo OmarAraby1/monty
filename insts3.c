@@ -2,15 +2,13 @@
 /**
  * _mod - modulus of the top two elements of the stack
  * @head: stack head
- * @val: unused
  * @line_num: number of line
  * Return: nothing
 */
-void _mod(stack_t **head, int val, unsigned int line_num)
+void _mod(stack_t **head, unsigned int line_num)
 {
 	stack_t *h;
 	int len = 0, aux;
-	(void)val;
 
 	h = *head;
 	while (h)
@@ -21,12 +19,18 @@ void _mod(stack_t **head, int val, unsigned int line_num)
 	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
 	if (h->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	aux = h->next->n % h->n;
@@ -36,24 +40,28 @@ void _mod(stack_t **head, int val, unsigned int line_num)
 /**
  * _pchar - prints the char at the top of the stack
  * @head: stack head
- * @val: unused
  * @line_num: number of line
  * Return: nothing
 */
-void _pchar(stack_t **head, int val, unsigned int line_num)
+void _pchar(stack_t **head, unsigned int line_num)
 {
 	stack_t *h;
-	(void)val;
 
 	h = *head;
 	if (!h)
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	if (h->n > 127 || h->n < 0)
 	{
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_num);
+		fclose(bus.fi);
+		free(bus.line);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", h->n);
@@ -61,14 +69,12 @@ void _pchar(stack_t **head, int val, unsigned int line_num)
 /**
  * _pstr - prints the string starting at the top of the stack
  * @head: stack head
- * @val: unused
  * @line_num: unused
  * Return: nothing
 */
-void _pstr(stack_t **head, int val, unsigned int line_num)
+void _pstr(stack_t **head, unsigned int line_num)
 {
 	stack_t *h;
-	(void)val;
 	(void)line_num;
 
 	h = *head;
@@ -86,14 +92,12 @@ void _pstr(stack_t **head, int val, unsigned int line_num)
 /**
  * _rotl - rotates the stack to the top
  * @head: stack head
- * @val: unused
  * @line_num: unused
  * Return: nothing
  */
-void _rotl(stack_t **head, int val, unsigned int line_num)
+void _rotl(stack_t **head, unsigned int line_num)
 {
 	stack_t *tmp = *head, *aux;
-	(void)val;
 	(void)line_num;
 
 	if (*head == NULL || (*head)->next == NULL)
@@ -113,15 +117,13 @@ void _rotl(stack_t **head, int val, unsigned int line_num)
 }
 /**
  * _rotr - rotates the stack to the bottom
- * @head: stack head
- * @val: unused
+ * @head: the stack head
  * @line_num: unused
  * Return: nothing
  */
-void _rotr(stack_t **head, int val, unsigned int line_num)
+void _rotr(stack_t **head, unsigned int line_num)
 {
 	stack_t *copy;
-	(void)val;
 	(void)line_num;
 
 	copy = *head;
