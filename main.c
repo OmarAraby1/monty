@@ -4,7 +4,7 @@ bus_t bus = {NULL, NULL, NULL, 0};
  * free_stack - frees a doubly linked list
  * @head: head of the stack
  */
-void free_stack(stack_t *head)
+void _free(stack_t *head)
 {
 	stack_t *aux;
 
@@ -52,7 +52,7 @@ int exec_monty(char *line, stack_t **stack, unsigned int line_num, FILE *fi)
 	{fprintf(stderr, "L%d: unknown instruction %s\n", line_num, op);
 		fclose(fi);
 		free(line);
-		free_stack(*stack);
+		_free(*stack);
 		exit(EXIT_FAILURE);
 	}
 	return (1);
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 		}
 		free(line);
 	}
-	free_stack(stack);
+	_free(stack);
 	fclose(fi);
 	return (0);
 }

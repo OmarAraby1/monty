@@ -21,7 +21,7 @@ void _swap(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
@@ -51,7 +51,7 @@ void _add(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
@@ -82,7 +82,7 @@ void _sub(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
@@ -113,7 +113,7 @@ void _div(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
@@ -122,7 +122,7 @@ void _div(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: division by zero\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -155,7 +155,7 @@ void _mul(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;

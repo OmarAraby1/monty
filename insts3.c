@@ -21,7 +21,7 @@ void _mod(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;
@@ -30,7 +30,7 @@ void _mod(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: division by zero\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	aux = h->next->n % h->n;
@@ -54,7 +54,7 @@ void _pchar(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	if (h->n > 127 || h->n < 0)
@@ -62,7 +62,7 @@ void _pchar(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", h->n);

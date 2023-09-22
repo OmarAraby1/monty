@@ -21,13 +21,13 @@ void _push(stack_t **head, unsigned int line_num)
 		{ fprintf(stderr, "L%d: usage: push integer\n", line_num);
 			fclose(bus.fi);
 			free(bus.line);
-			free_stack(*head);
+			_free(*head);
 			exit(EXIT_FAILURE); }}
 	else
 	{ fprintf(stderr, "L%d: usage: push integer\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE); }
 	n = atoi(bus.arg);
 	if (bus.lifi == 0)
@@ -72,7 +72,7 @@ void _pint(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*head)->n);
@@ -94,7 +94,7 @@ void _pop(stack_t **head, unsigned int line_num)
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_num);
 		fclose(bus.fi);
 		free(bus.line);
-		free_stack(*head);
+		_free(*head);
 		exit(EXIT_FAILURE);
 	}
 	other = *head;

@@ -61,7 +61,7 @@ typedef struct instruction_s
 
 int main(int argc, char **argv);
 int exec_monty(char *line, stack_t **stack, unsigned int line_num, FILE *fi);
-void free_stack(stack_t *head);
+void _free(stack_t *head);
 void addnode(stack_t **head, int n);
 void addqueue(stack_t **head, int n);
 
