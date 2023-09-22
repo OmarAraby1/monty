@@ -117,8 +117,6 @@ void _rotl(stack_t **head, unsigned int line_num)
 	(*head)->next = NULL;
 	(*head)->prev = tmp;
 	(*head) = aux;
-	free(aux);
-	free(temp);
 }
 /**
  * _rotr - rotates the stack to the bottom
@@ -145,5 +143,4 @@ void _rotr(stack_t **head, unsigned int line_num)
 	copy->prev = NULL;
 	(*head)->prev = copy;
 	(*head) = copy;
-	free(copy);
 }
