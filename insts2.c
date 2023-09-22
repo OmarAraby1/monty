@@ -58,6 +58,7 @@ void _add(stack_t **head, unsigned int line_num)
 	aux = h->n + h->next->n;
 	h->next->n = aux;
 	*head = h->next;
+	free(h);
 }
 /**
  * _sub - sustract top two numbers of the stack
