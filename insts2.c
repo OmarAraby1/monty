@@ -89,6 +89,7 @@ void _sub(stack_t **head, unsigned int line_num)
 	aux = h->next->n - h->n;
 	h->next->n = aux;
 	*head = h->next;
+	free(h);
 }
 /**
  * _div - divides top two numbers of the stack
