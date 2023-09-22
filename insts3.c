@@ -66,7 +66,6 @@ void _pchar(stack_t **head, unsigned int line_num)
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", h->n);
-	free(h);
 }
 /**
  * _pstr - prints the string starting at the top of the stack
