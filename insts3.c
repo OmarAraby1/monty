@@ -36,6 +36,7 @@ void _mod(stack_t **head, unsigned int line_num)
 	aux = h->next->n % h->n;
 	h->next->n = aux;
 	*head = h->next;
+	free(h);
 }
 /**
  * _pchar - prints the char at the top of the stack
@@ -65,6 +66,7 @@ void _pchar(stack_t **head, unsigned int line_num)
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", h->n);
+	free(h);
 }
 /**
  * _pstr - prints the string starting at the top of the stack
@@ -88,6 +90,7 @@ void _pstr(stack_t **head, unsigned int line_num)
 		h = h->next;
 	}
 	printf("\n");
+	free(h);
 }
 /**
  * _rotl - rotates the stack to the top
@@ -114,6 +117,8 @@ void _rotl(stack_t **head, unsigned int line_num)
 	(*head)->next = NULL;
 	(*head)->prev = tmp;
 	(*head) = aux;
+	free(aux);
+	free(temp);
 }
 /**
  * _rotr - rotates the stack to the bottom
@@ -140,4 +145,5 @@ void _rotr(stack_t **head, unsigned int line_num)
 	copy->prev = NULL;
 	(*head)->prev = copy;
 	(*head) = copy;
+	free(copy);
 }
